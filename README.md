@@ -1,2 +1,3 @@
 # rSolarDB
-R Library to acces SolarDB data 
+
+R Library to access SolarDB database 
