@@ -2,12 +2,27 @@
 
 R Library to access SolarDB database 
 
+## Installation
+
+Please install first the `devtools` library : 
+
+```R
+install.packages("devtools")
+```
+
+Then install package `rSolarDB` from Github : 
+
+```R
+devtools::install_github("LE2P/rSolarDB")
+```
+
+You will also need a token to allow access data, please use the register method at
+<https://solardb.univ-reunion.fr> to register and obtain a token by email.
+
 ## Login, Status and Logout
 
-OPTIONAL : Your can first configure the `~/.Renviron` file in your home directory
+**OPTIONAL :** You can first configure the `~/.Renviron` file in your home directory
 to allow `rSolarDB` package to know your authentication token.
-
-See <https://solardb.univ-reunion.fr> to register and obtaint a token. 
 
 ```
 solardb_token=YOURTOKENHERE
@@ -18,7 +33,7 @@ solardb_token=YOURTOKENHERE
 ```R
 login()
 
-# OR 
+# OR without configure .Renviron
 
 login(token="PUTYOURTOKENHERE")
 ```
