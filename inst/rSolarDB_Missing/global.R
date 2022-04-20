@@ -1,4 +1,4 @@
-pkgs <- c("shiny", "shinymaterial", "rSolarDB", "googleVis")
+pkgs <- c("shiny", "shinymaterial", "rSolarDB", "magrittr", "googleVis")
 for (pkg in pkgs)
   if (!require(pkg, character.only = T))
     install.packages(pkg)
