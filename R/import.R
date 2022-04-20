@@ -6,5 +6,7 @@
 NULL
 #' @importFrom RCurl getURL curlSetOpt getCurlHandle
 NULL
+#' @importFrom shiny runApp
+NULL
 #' @importFrom xts xts
 NULL
