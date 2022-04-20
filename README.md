@@ -55,6 +55,19 @@ types()
 sensors()
 ```
 
+## Get data from SolarDB
+
+```R
+# Last 7 days on Piton des Neiges and Saint Louis Jean Joly
+d <- getData(sites = "saintlouisjeanjoly,pitondesneiges", start = "-7d", type = "GHI")
+d$saintlouisjeanjoly$GHI_pr01_Avg$values %>% plot(type='l')
+d$pitondesneiges$GHI_qu01_Avg$values %>% lines(type='l', col=2)
+```
+
+## Get metadata from SolarDB
+
+
+
 ## Todo
 
 - deal with 404 errors : trycatch on 200

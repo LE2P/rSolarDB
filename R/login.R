@@ -20,8 +20,7 @@ login <- function(token = NULL){
 
   baseUrl <- "https://solardb.univ-reunion.fr/api/v1/"
   url <- paste0(baseUrl, "login?token=", token)
-  {url %>% .getJSON}$message %>% message
-
+  url %>% .getJSON
   return(invisible(NULL))
 }
 
@@ -43,7 +42,7 @@ login <- function(token = NULL){
 logout <- function(){
 
   url <- "https://solardb.univ-reunion.fr/api/v1/logout"
-  {url %>% .getJSON}$message %>% message
+  url %>% .getJSON
 
   return(invisible(NULL))
 }
@@ -66,7 +65,7 @@ logout <- function(){
 status <- function(){
 
   url <- "https://solardb.univ-reunion.fr/api/v1/status"
-  {url %>% .getJSON}$message %>% message
+  url %>% .getJSON
 
   return(invisible(NULL))
 }
