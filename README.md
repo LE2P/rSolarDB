@@ -68,6 +68,7 @@ types()
 
 ```R
 sensors()
+sensors(sites="leportbarbusse")
 ```
 
 ## Get data from SolarDB
@@ -100,3 +101,14 @@ dygraph(dd) %>% dyRangeSelector()
 ## Get metadata from SolarDB
 
 Coming soon
+
+## Some Shiny Apps
+
+### Missing
+
+Shiny app to plot a calendar with count of missing data for each day. To launch 
+app :
+
+```R
+missing()
+```

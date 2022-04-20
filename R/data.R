@@ -54,8 +54,16 @@ types <- function() {
 #'  sites()
 #' }
 #'
-sensors <- function() {
-  url <- "https://solardb.univ-reunion.fr/api/v1/data/sensors"
+sensors <- function(sites = NULL, types = NULL) {
+  if (!is.null(sites))
+    sites <- paste0("site=", paste(sites, collapse = ","))
+
+  if (!is.null(types))
+    types <- paste0("type=", paste(types, collapse = ","))
+
+  query <- paste(c(sites, types), collapse = "&")
+
+  url <- paste0("https://solardb.univ-reunion.fr/api/v1/data/sensors?", query)
   url %>% .getJSON
 
 }
@@ -96,12 +104,9 @@ getData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, st
     if (!is.null(stop))
       stop <- paste0("stop=", stop)
 
-    query <-
-      paste(c(sites, types, sensors, start, stop), collapse = "&")
+    query <- paste(c(sites, types, sensors, start, stop), collapse = "&")
 
-    url <-
-      paste0("https://solardb.univ-reunion.fr/api/v1/data/json?",
-             query)
+    url <- paste0("https://solardb.univ-reunion.fr/api/v1/data/json?", query)
     url %>% .getJSON
 
 }
@@ -125,11 +130,33 @@ getData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, st
 getXtsData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, stop = NULL) {
     data <- getData(sites, types, sensors, start, stop)
     lapply(data, function(ele) {
-      lapply(ele, function(s)
-        xts(
-          s$values,
-          as.POSIXct(s$dates, format = "%Y-%m-%dT%H:%M:%SZ")
-        ))
+      lapply(ele, function(s) xts(s$values, as.POSIXct(s$dates, format = "%Y-%m-%dT%H:%M:%SZ")))
     })
 
 }
+
+
+#' Get data count by day for a sensor from SolarDB
+#'
+#' This function allow query the data from SolarDB.
+#'
+#' @return NULL
+#' @export
+#'
+#' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
+#'
+#' @examples
+#' \dontrun{
+#'  getDataCountByDay()
+#' }
+#'
+getDataCountByDay <- function(site , sensor) {
+  qsite <- paste0("site=", site)
+  qsensor <- paste0("sensorid=", sensor)
+  qaggr <- "start=0&aggrFn=count&aggrEvery=24h"
+  query <- paste(c(qsite, qsensor, qaggr), collapse = "&")
+  url <- paste0("https://solardb.univ-reunion.fr/api/v1/data/json?", query)
+  {url %>% .getJSON}[[site]][[sensor]]
+
+}
+

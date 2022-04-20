@@ -13,5 +13,6 @@ Imports:
   magrittr,
   jsonlite,
   RCurl,
-  xts
+  xts,
+  shiny
   

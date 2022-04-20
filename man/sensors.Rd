@@ -4,7 +4,7 @@
 \alias{sensors}
 \title{Sensors from SolarDB}
 \usage{
-sensors()
+sensors(sites = NULL, types = NULL)
 }
 \description{
 This function allow know the sensors ids from SolarDB.
