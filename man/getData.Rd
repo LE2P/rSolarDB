@@ -11,7 +11,7 @@ This function allow query the data from SolarDB.
 }
 \examples{
 \dontrun{
- sites()
+ getData()
 }
 
 }

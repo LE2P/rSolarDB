@@ -57,6 +57,8 @@ sensors()
 
 ## Get data from SolarDB
 
+Get raw data from SolarDB (date store into string):
+
 ```R
 # Last 7 days on Piton des Neiges and Saint Louis Jean Joly
 d <- getData(sites = "saintlouisjeanjoly,pitondesneiges", start = "-7d", type = "GHI")
@@ -64,11 +66,22 @@ d$saintlouisjeanjoly$GHI_pr01_Avg$values %>% plot(type='l')
 d$pitondesneiges$GHI_qu01_Avg$values %>% lines(type='l', col=2)
 ```
 
+Get data from SolarDB using time series library Xts :
+
+```R
+d <- getXtsData(sites = "pitondesneiges", start = "-7d", type = "GHI,DHI")
+plot(d$pitondesneiges$GHI_qu01_Avg)
+lines(d$pitondesneiges$DHI_qu01_Avg, col = '2')
+```
+
+Plot Xts data using dygraph : 
+
+```R
+library(dygraphs)
+dd <- cbind(d$pitondesneiges$DHI_qu01_Avg, d$pitondesneiges$GHI_qu01_Avg)
+dygraph(dd) %>% dyRangeSelector()
+```
+
 ## Get metadata from SolarDB
 
-
-
-## Todo
-
-- deal with 404 errors : trycatch on 200
-
+Coming soon

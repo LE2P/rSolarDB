@@ -6,3 +6,5 @@
 NULL
 #' @importFrom RCurl getURL
 NULL
+#' @importFrom xts xts
+NULL
