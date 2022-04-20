@@ -13,7 +13,7 @@
 #' }
 #'
 sites <- function() {
-  url <- "https://solardb.univ-reunion.fr/api/v1/data/sites"
+  url <- paste0(.baseURL, "data/sites")
   url %>% .getJSON
 
 }
@@ -34,7 +34,7 @@ sites <- function() {
 #' }
 #'
 types <- function() {
-  url <- "https://solardb.univ-reunion.fr/api/v1/data/types"
+  url <- paste0(.baseURL, "data/types")
   url %>% .getJSON
 
 }
@@ -63,7 +63,7 @@ sensors <- function(sites = NULL, types = NULL) {
 
   query <- paste(c(sites, types), collapse = "&")
 
-  url <- paste0("https://solardb.univ-reunion.fr/api/v1/data/sensors?", query)
+  url <- paste0(.baseURL, "data/sensors?", query)
   url %>% .getJSON
 
 }
@@ -106,7 +106,7 @@ getData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, st
 
     query <- paste(c(sites, types, sensors, start, stop), collapse = "&")
 
-    url <- paste0("https://solardb.univ-reunion.fr/api/v1/data/json?", query)
+    url <- paste0(.baseURL, "data/json?", query)
     url %>% .getJSON
 
 }
@@ -155,7 +155,7 @@ getDataCountByDay <- function(site , sensor) {
   qsensor <- paste0("sensorid=", sensor)
   qaggr <- "start=0&aggrFn=count&aggrEvery=24h"
   query <- paste(c(qsite, qsensor, qaggr), collapse = "&")
-  url <- paste0("https://solardb.univ-reunion.fr/api/v1/data/json?", query)
+  url <- paste0(.baseURL, "data/json?", query)
   {url %>% .getJSON}[[site]][[sensor]]
 
 }

@@ -18,8 +18,7 @@ login <- function(token = NULL){
   if (is.null(token))
     token <- Sys.getenv("solardb_token") #! load token from env
 
-  baseUrl <- "https://solardb.univ-reunion.fr/api/v1/"
-  url <- paste0(baseUrl, "login?token=", token)
+  url <- paste0(.baseURL, "login?token=", token)
   url %>% .getJSON
   return(invisible(NULL))
 }
@@ -41,7 +40,7 @@ login <- function(token = NULL){
 #'
 logout <- function(){
 
-  url <- "https://solardb.univ-reunion.fr/api/v1/logout"
+  url <- paste0(.baseURL, "logout")
   url %>% .getJSON
 
   return(invisible(NULL))
@@ -64,7 +63,7 @@ logout <- function(){
 #'
 status <- function(){
 
-  url <- "https://solardb.univ-reunion.fr/api/v1/status"
+  url <- paste0(.baseURL, "status")
   url %>% .getJSON
 
   return(invisible(NULL))

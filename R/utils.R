@@ -2,6 +2,11 @@
   .curl <<- RCurl::getCurlHandle()
   tmpFile <- tempfile()
   RCurl::curlSetOpt(cookiejar = tmpFile, cookiefile= tmpFile, curl = .curl)
+
+  .baseURL <<- Sys.getenv("solardb_base_url")
+  if (.baseURL ==  "")
+    .baseURL <<- "https://solardb.univ-reunion.fr/api/v1/"
+
 }
 
 
