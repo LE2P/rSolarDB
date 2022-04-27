@@ -100,7 +100,33 @@ dygraph(dd) %>% dyRangeSelector()
 
 ## Get metadata from SolarDB
 
-Coming soon
+### Campaigns 
+
+```R
+campaigns()
+campaigns(territory = "Mauritius")
+```
+
+### Measures 
+
+```R
+measures()
+measures(type="DHI")
+measures(type="DHI", nested=TRUE)
+```
+
+### Instruments
+
+```R
+instruments()
+```
+
+### Models
+
+```R
+models()
+models(type = "Meteorological")
+```
 
 ## Some Shiny Apps
 

@@ -160,3 +160,40 @@ getDataCountByDay <- function(site , sensor) {
 
 }
 
+
+#' Get data bounds from SolarDB
+#'
+#' This function allow query bounds date of the data from SolarDB.
+#'
+#' @return NULL
+#' @export
+#'
+#' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
+#'
+#' @examples
+#' \dontrun{
+#'  getBounds()
+#' }
+#'
+getBounds <- function(sites = NULL, types = NULL, sensors = NULL) {
+  if (is.null(sites) && is.null(types) && is.null(sensors)) {
+    message("Please set a least one {site} OR one {type} OR one {sensor}")
+    return(invisible(NULL))
+  }
+
+  if (!is.null(sites))
+    sites <- paste0("site=", paste(sites, collapse = ","))
+
+  if (!is.null(types))
+    types <- paste0("type=", paste(types, collapse = ","))
+
+  if (!is.null(sensors))
+    sensors <- paste0("sensorid=", paste(sensors, collapse = ","))
+
+
+  query <- paste(c(sites, types, sensors), collapse = "&")
+
+  url <- paste0(.baseURL, "data/json/bounds?", query)
+  url %>% .getJSON
+
+}
