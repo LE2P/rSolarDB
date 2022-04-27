@@ -1,4 +1,4 @@
-#' Launch missing app in the default browser
+#' Launch missings app in the default browser
 #'
 #' Shiny App to visualise missing data from SolarDB
 #'
@@ -6,12 +6,12 @@
 #'
 #' @examples
 #' if (interactive()) {
-#'   missing()
+#'   missings()
 #' }
 #' @export
 #'
-missing <- function() {
-  appDir <- system.file("rSolarDB_Missing", package = "rSolarDB")
+missings <- function() {
+  appDir <- system.file("rSolarDB_Missings", package = "rSolarDB")
   if (appDir == "") {
     stop("Could not find example directory. Try re-installing `mypackage`.", call. = FALSE)
   }

@@ -104,11 +104,11 @@ Coming soon
 
 ## Some Shiny Apps
 
-### Missing
+### Missings
 
 Shiny app to plot a calendar with count of missing data for each day. To launch 
 app :
 
 ```R
-missing()
+missings()
 ```
