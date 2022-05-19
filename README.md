@@ -1,16 +1,16 @@
 # rSolarDB
 
-R Library to access SolarDB database 
+R Library to access SolarDB database
 
 ## Installation
 
-Please install first the `devtools` library : 
+Please install first the `devtools` library :
 
 ```R
 install.packages("devtools")
 ```
 
-Then install package `rSolarDB` from Github : 
+Then install package `rSolarDB` from Github :
 
 ```R
 devtools::install_github("LE2P/rSolarDB")
@@ -22,13 +22,14 @@ You will also need a token to allow access data, please use the register method 
 ## Login, Status and Logout
 
 **OPTIONAL :** You can first configure the `~/.Renviron` file in your home directory
-to allow `rSolarDB` package to know your authentication token.
+to allow `rSolarDB` package to know your authentication token. If set, the package
+will automatically launch `login()` on  package load.
 
 ```
 solardb_token=YOURTOKENHERE
 ```
 
-### Login 
+### Login
 
 ```R
 login()
@@ -38,7 +39,7 @@ login()
 login(token="PUTYOURTOKENHERE")
 ```
 
-### Status 
+### Status
 
 ```R
 status()
@@ -52,13 +53,13 @@ logout()
 
 ## List of alias site, types and sensors
 
-### Alias sites 
+### Alias sites
 
 ```R
 sites()
 ```
 
-### Types 
+### Types
 
 ```R
 types()
@@ -90,7 +91,7 @@ plot(d$pitondesneiges$GHI_qu01_Avg)
 lines(d$pitondesneiges$DHI_qu01_Avg, col = '2')
 ```
 
-Plot Xts data using dygraph : 
+Plot Xts data using dygraph :
 
 ```R
 library(dygraphs)
@@ -100,14 +101,14 @@ dygraph(dd) %>% dyRangeSelector()
 
 ## Get metadata from SolarDB
 
-### Campaigns 
+### Campaigns
 
 ```R
 campaigns()
 campaigns(territory = "Mauritius")
 ```
 
-### Measures 
+### Measures
 
 ```R
 measures()
@@ -132,7 +133,7 @@ models(type = "Meteorological")
 
 ### Missings
 
-Shiny app to plot a calendar with count of missing data for each day. To launch 
+Shiny app to plot a calendar with count of missing data for each day. To launch
 app :
 
 ```R
