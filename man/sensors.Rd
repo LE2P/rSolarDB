@@ -6,6 +6,11 @@
 \usage{
 sensors(sites = NULL, types = NULL)
 }
+\arguments{
+\item{sites}{character (or character vector). List of sites}
+
+\item{types}{character (or character vector). List of types}
+}
 \description{
 This function allow know the sensors ids from SolarDB.
 }

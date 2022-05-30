@@ -6,6 +6,15 @@
 \usage{
 instruments(id = NULL, name = NULL, label = NULL, serial = NULL)
 }
+\arguments{
+\item{id}{character. The _id from the table instruments}
+
+\item{name}{character. The name from the table instruments}
+
+\item{label}{character. The label from the table instruments}
+
+\item{serial}{character. The serial from the table instruments}
+}
 \description{
 This function allow know the instruments from SolarDB.
 }

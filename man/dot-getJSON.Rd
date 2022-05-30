@@ -6,6 +6,9 @@
 \usage{
 .getJSON(url)
 }
+\arguments{
+\item{url}{character. Url to execute curl call}
+}
 \description{
 getJSON
 }

@@ -6,6 +6,15 @@
 \usage{
 measures(id = NULL, names = NULL, type = NULL, nested = FALSE)
 }
+\arguments{
+\item{id}{character. The _id from the table measures}
+
+\item{names}{character (or character vector). The names from the table measures}
+
+\item{type}{character. The type from the table measures}
+
+\item{nested}{logical. Answer should be nested from the tables measures, instruments and models}
+}
 \description{
 This function allow know the measures from SolarDB.
 }

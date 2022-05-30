@@ -6,6 +6,9 @@
 \usage{
 login(token = NULL)
 }
+\arguments{
+\item{token}{character. The token to connect to SolarDB}
+}
 \description{
 This function allow to login to SolarDB and store the cookie needed to
 authenticate user.

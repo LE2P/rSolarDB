@@ -44,6 +44,9 @@ types <- function() {
 #'
 #' This function allow know the sensors ids from SolarDB.
 #'
+#' @param sites character (or character vector). List of sites
+#' @param types character (or character vector). List of types
+#'
 #' @return NULL
 #' @export
 #'
@@ -57,7 +60,7 @@ types <- function() {
 sensors <- function(sites = NULL, types = NULL) {
   if (!is.null(sites))
     sites <- paste0("site=", paste(sites, collapse = ","))
-
+c
   if (!is.null(types))
     types <- paste0("type=", paste(types, collapse = ","))
 
@@ -72,6 +75,12 @@ sensors <- function(sites = NULL, types = NULL) {
 #' Get data from SolarDB
 #'
 #' This function allow query the data from SolarDB.
+#'
+#' @param sites character (or character vector). List of sites
+#' @param types character (or character vector). List of types
+#' @param sensors character (or character vector). List of sensors
+#' @param start character. Date, Timestamp or duration
+#' @param stop character. Date, Timestomp or duration
 #'
 #' @return NULL
 #' @export
@@ -117,6 +126,12 @@ getData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, st
 #' This function allow query the data from SolarDB and return the result into
 #' xts format.
 #'
+#' @param sites character (or character vector). List of sites
+#' @param types character (or character vector). List of types
+#' @param sensors character (or character vector). List of sensors
+#' @param start character. Date, Timestamp or duration
+#' @param stop character. Date, Timestomp or duration
+#'
 #' @return NULL
 #' @export
 #'
@@ -139,6 +154,9 @@ getXtsData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL,
 #' Get data count by day for a sensor from SolarDB
 #'
 #' This function allow query the data from SolarDB.
+#'
+#' @param site character. Name of site
+#' @param sensor character. Name of type
 #'
 #' @return NULL
 #' @export
@@ -164,6 +182,10 @@ getDataCountByDay <- function(site , sensor) {
 #' Get data bounds from SolarDB
 #'
 #' This function allow query bounds date of the data from SolarDB.
+#'
+#' @param sites character (or character vector). List of sites
+#' @param types character (or character vector). List of types
+#' @param sensors character (or character vector). List of sensors
 #'
 #' @return NULL
 #' @export

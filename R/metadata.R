@@ -2,6 +2,11 @@
 #'
 #' This function allow know the campaigns from SolarDB.
 #'
+#' @param id character. The _id from the table campaigns
+#' @param name character. The name from the table campaigns
+#' @param territory character. The territory from the table campaigns
+#' @param alias character. The alias site from the table campaigns
+#'
 #' @return NULL
 #' @export
 #'
@@ -36,6 +41,11 @@ campaigns <- function(id = NULL, name = NULL, territory = NULL, alias = NULL) {
 #' Instruments from SolarDB
 #'
 #' This function allow know the instruments from SolarDB.
+#'
+#' @param id character. The _id from the table instruments
+#' @param name character. The name from the table instruments
+#' @param label character. The label from the table instruments
+#' @param serial character. The serial from the table instruments
 #'
 #' @return NULL
 #' @export
@@ -72,6 +82,11 @@ instruments <- function(id = NULL, name = NULL, label = NULL, serial = NULL) {
 #'
 #' This function allow know the measures from SolarDB.
 #'
+#' @param id character. The _id from the table measures
+#' @param names character (or character vector). The names from the table measures
+#' @param type character. The type from the table measures
+#' @param nested logical. Answer should be nested from the tables measures, instruments and models
+#'
 #' @return NULL
 #' @export
 #'
@@ -106,6 +121,10 @@ measures <- function(id = NULL, names = NULL, type = NULL, nested = FALSE) {
 #' Models from SolarDB
 #'
 #' This function allow know the models from SolarDB.
+#'
+#' @param id character. The _id from the table models
+#' @param name character. The name from the table models
+#' @param type character. The type from the table models
 #'
 #' @return NULL
 #' @export

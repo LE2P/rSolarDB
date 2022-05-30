@@ -6,6 +6,15 @@
 \usage{
 campaigns(id = NULL, name = NULL, territory = NULL, alias = NULL)
 }
+\arguments{
+\item{id}{character. The _id from the table campaigns}
+
+\item{name}{character. The name from the table campaigns}
+
+\item{territory}{character. The territory from the table campaigns}
+
+\item{alias}{character. The alias site from the table campaigns}
+}
 \description{
 This function allow know the campaigns from SolarDB.
 }

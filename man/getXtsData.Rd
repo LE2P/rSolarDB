@@ -12,6 +12,17 @@ getXtsData(
   stop = NULL
 )
 }
+\arguments{
+\item{sites}{character (or character vector). List of sites}
+
+\item{types}{character (or character vector). List of types}
+
+\item{sensors}{character (or character vector). List of sensors}
+
+\item{start}{character. Date, Timestamp or duration}
+
+\item{stop}{character. Date, Timestomp or duration}
+}
 \description{
 This function allow query the data from SolarDB and return the result into
 xts format.

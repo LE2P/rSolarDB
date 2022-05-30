@@ -1,5 +1,7 @@
 #' getJSON
 #'
+#' @param url character. Url to execute curl call
+#'
 #' @return NULL
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
@@ -16,6 +18,8 @@
 }
 
 #' validateJSON
+#'
+#' @param json list. Answer json from SolarDB
 #'
 #' @return NULL
 #'

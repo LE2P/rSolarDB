@@ -6,6 +6,13 @@
 \usage{
 models(id = NULL, name = NULL, type = NULL)
 }
+\arguments{
+\item{id}{character. The _id from the table models}
+
+\item{name}{character. The name from the table models}
+
+\item{type}{character. The type from the table models}
+}
 \description{
 This function allow know the models from SolarDB.
 }

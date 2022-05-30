@@ -3,6 +3,8 @@
 #' This function allow to login to SolarDB and store the cookie needed to
 #' authenticate user.
 #'
+#' @param token character. The token to connect to SolarDB
+#'
 #' @return NULL
 #' @export
 #'

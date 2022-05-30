@@ -6,6 +6,11 @@
 \usage{
 getDataCountByDay(site, sensor)
 }
+\arguments{
+\item{site}{character. Name of site}
+
+\item{sensor}{character. Name of type}
+}
 \description{
 This function allow query the data from SolarDB.
 }

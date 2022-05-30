@@ -6,6 +6,9 @@
 \usage{
 .validateJSON(json)
 }
+\arguments{
+\item{json}{list. Answer json from SolarDB}
+}
 \description{
 validateJSON
 }

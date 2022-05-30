@@ -6,6 +6,13 @@
 \usage{
 getBounds(sites = NULL, types = NULL, sensors = NULL)
 }
+\arguments{
+\item{sites}{character (or character vector). List of sites}
+
+\item{types}{character (or character vector). List of types}
+
+\item{sensors}{character (or character vector). List of sensors}
+}
 \description{
 This function allow query bounds date of the data from SolarDB.
 }
