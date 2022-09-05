@@ -145,7 +145,7 @@ getData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, st
 getXtsData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, stop = NULL) {
     data <- getData(sites, types, sensors, start, stop)
     lapply(data, function(ele) {
-      lapply(ele, function(s) xts(s$values, as.POSIXct(s$dates, format = "%Y-%m-%dT%H:%M:%SZ")))
+      lapply(ele, function(s) xts(s$values, as.POSIXct(s$dates, format = "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")))
     })
 
 }

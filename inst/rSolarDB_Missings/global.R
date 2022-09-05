@@ -6,7 +6,7 @@ for (pkg in pkgs)
 login()
 
 buildCount <- function(ele)  data.frame(
-  date = ele$dates %>% as.POSIXct(format = "%Y-%m-%dT%H:%M:%SZ") - 1, ## count en amont
+  date = ele$dates %>% as.POSIXct(format = "%Y-%m-%dT%H:%M:%SZ", tz = "UTC") - 1, ## count en amont
   nNA = 1440 - ele$values
 )
 
