@@ -14,7 +14,7 @@
 #' @export
 #'
 .getJSON <- function(url){
-  url %>% getURL(curl = .curl) %>% fromJSON %>% .validateJSON
+  url %>% getURL(curl = .curl, .encoding = 'UTF-8') %>% fromJSON %>% .validateJSON
 }
 
 #' validateJSON
