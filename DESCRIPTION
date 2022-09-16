@@ -1,6 +1,6 @@
 Package: rSolarDB
 Title: r library to access SolarDB database
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
     person("Mathieu", "Delsaut", , "mathieu.delsaut@univ-reunion.fr", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-3878-1642"))
