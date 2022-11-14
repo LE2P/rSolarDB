@@ -99,6 +99,14 @@ dd <- cbind(d$pitondesneiges$DHI_qu01_Avg, d$pitondesneiges$GHI_qu01_Avg)
 dygraph(dd) %>% dyRangeSelector()
 ```
 
+Get data into `data.table` format : 
+
+```R
+iosnet <- c("amitie", "anseboileau", "antananarivo", "diego", "hahaya", "ouani", "reservetortues", "vacoas")
+d <- getDtData(sites = iosnet, types = "GHI,DHI")
+d
+```
+
 ## Get metadata from SolarDB
 
 ### Campaigns

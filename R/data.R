@@ -151,6 +151,47 @@ getXtsData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL,
 }
 
 
+#' Get data from SolarDB in data.table format
+#'
+#' This function allow query the data from SolarDB and return the result into
+#' the data.table format. The resutl will be a list of data.table by alias site.
+#'
+#' @param sites character (or character vector). List of sites
+#' @param types character (or character vector). List of types
+#' @param sensors character (or character vector). List of sensors
+#' @param start character. Date, Timestamp or duration
+#' @param stop character. Date, Timestomp or duration
+#'
+#' @return list of data.table
+#' @export
+#'
+#' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
+#'
+#' @examples
+#' \dontrun{
+#'  getDtData()
+#' }
+#'
+getDtData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, stop = NULL){
+  d <- getData(sites, types, sensors, start, stop)
+
+  mergeByDates <- function(...) merge(..., by = "dates", all = TRUE)
+
+  aliasList <- names(d)
+  for (a in aliasList){
+    for (n in names(d[[a]])){
+      names(d[[a]][[n]]) <- c("dates", n)
+      d[[a]][[n]]$dates <- as.POSIXct(d[[a]][[n]]$dates, tz = "UTC", format = "%Y-%m-%dT%TZ")
+    }
+  }
+
+  DT <- lapply(aliasList, function(ele) Reduce(mergeByDates, lapply(d[[ele]], as.data.table)))
+  names(DT) <- aliasList
+
+  return(DT)
+}
+
+
 #' Get data count by day for a sensor from SolarDB
 #'
 #' This function allow query the data from SolarDB.

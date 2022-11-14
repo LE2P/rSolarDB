@@ -1,5 +1,6 @@
 #! FULL IMPORT
 #' @import magrittr
+#' @import data.table
 
 #! IMPORT FROM
 #' @importFrom jsonlite fromJSON
