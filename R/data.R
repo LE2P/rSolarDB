@@ -81,6 +81,8 @@ c
 #' @param sensors character (or character vector). List of sensors
 #' @param start character. Date, Timestamp or duration
 #' @param stop character. Date, Timestomp or duration
+#' @param aggrFn character. The aggregation function
+#' @param aggrEvery character. The aggregation period
 #'
 #' @return NULL
 #' @export
@@ -92,7 +94,7 @@ c
 #'  getData()
 #' }
 #'
-getData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, stop = NULL) {
+getData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, stop = NULL, aggrFn = NULL, aggrEvery = NULL) {
     if (is.null(sites) && is.null(types) && is.null(sensors)) {
       message("Please set a least one {site} OR one {type} OR one {sensor}")
       return(invisible(NULL))
@@ -113,7 +115,13 @@ getData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, st
     if (!is.null(stop))
       stop <- paste0("stop=", stop)
 
-    query <- paste(c(sites, types, sensors, start, stop), collapse = "&")
+    if (!is.null(aggrFn))
+      aggrFn <- paste0("aggrFn=", aggrFn)
+
+    if (!is.null(aggrEvery))
+      aggrEvery <- paste0("aggrEvery=", aggrEvery)
+
+    query <- paste(c(sites, types, sensors, start, stop, aggrFn, aggrEvery), collapse = "&")
 
     url <- paste0(.baseURL, "data/json?", query)
     url %>% .getJSON
@@ -131,6 +139,8 @@ getData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, st
 #' @param sensors character (or character vector). List of sensors
 #' @param start character. Date, Timestamp or duration
 #' @param stop character. Date, Timestomp or duration
+#' @param aggrFn character. The aggregation function
+#' @param aggrEvery character. The aggregation period
 #'
 #' @return NULL
 #' @export
@@ -142,8 +152,8 @@ getData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, st
 #'  getXtsData()
 #' }
 #'
-getXtsData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, stop = NULL) {
-    data <- getData(sites, types, sensors, start, stop)
+getXtsData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, stop = NULL, aggrFn = NULL, aggrEvery = NULL) {
+    data <- getData(sites, types, sensors, start, stop, aggrFn, aggrEvery)
     lapply(data, function(ele) {
       lapply(ele, function(s) xts(s$values, as.POSIXct(s$dates, format = "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")))
     })
@@ -161,6 +171,8 @@ getXtsData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL,
 #' @param sensors character (or character vector). List of sensors
 #' @param start character. Date, Timestamp or duration
 #' @param stop character. Date, Timestomp or duration
+#' @param aggrFn character. The aggregation function
+#' @param aggrEvery character. The aggregation period
 #'
 #' @return list of data.table
 #' @export
@@ -172,8 +184,8 @@ getXtsData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL,
 #'  getDtData()
 #' }
 #'
-getDtData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, stop = NULL){
-  d <- getData(sites, types, sensors, start, stop)
+getDtData <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, stop = NULL, aggrFn = NULL, aggrEvery = NULL){
+  d <- getData(sites, types, sensors, start, stop, aggrFn, aggrEvery)
 
   mergeByDates <- function(...) merge(..., by = "dates", all = TRUE)
 

@@ -4,7 +4,15 @@
 \alias{getData}
 \title{Get data from SolarDB}
 \usage{
-getData(sites = NULL, types = NULL, sensors = NULL, start = NULL, stop = NULL)
+getData(
+  sites = NULL,
+  types = NULL,
+  sensors = NULL,
+  start = NULL,
+  stop = NULL,
+  aggrFn = NULL,
+  aggrEvery = NULL
+)
 }
 \arguments{
 \item{sites}{character (or character vector). List of sites}
@@ -16,6 +24,10 @@ getData(sites = NULL, types = NULL, sensors = NULL, start = NULL, stop = NULL)
 \item{start}{character. Date, Timestamp or duration}
 
 \item{stop}{character. Date, Timestomp or duration}
+
+\item{aggrFn}{character. The aggregation function}
+
+\item{aggrEvery}{character. The aggregation period}
 }
 \description{
 This function allow query the data from SolarDB.

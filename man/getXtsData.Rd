@@ -9,7 +9,9 @@ getXtsData(
   types = NULL,
   sensors = NULL,
   start = NULL,
-  stop = NULL
+  stop = NULL,
+  aggrFn = NULL,
+  aggrEvery = NULL
 )
 }
 \arguments{
@@ -22,6 +24,10 @@ getXtsData(
 \item{start}{character. Date, Timestamp or duration}
 
 \item{stop}{character. Date, Timestomp or duration}
+
+\item{aggrFn}{character. The aggregation function}
+
+\item{aggrEvery}{character. The aggregation period}
 }
 \description{
 This function allow query the data from SolarDB and return the result into
