@@ -12,7 +12,7 @@
   curlSetOpt(cookiejar = tmpFile, cookiefile= tmpFile, .opts = opts, curl = .curl)
 
   token <- Sys.getenv("solardb_token")
-  if (token != "") login()
+  if (token != "") suppressMessages(login())
 
   invisible()
 }
