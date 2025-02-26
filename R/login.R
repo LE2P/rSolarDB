@@ -12,16 +12,16 @@
 #'
 #' @examples
 #' \dontrun{
-#'  register(email = "email@domain.com")
+#'  sdb_register(email = "email@domain.com")
 #' }
 #'
-register <- function(email){
+sdb_register <- function(email){
 
   if (!is.character(email))
     stop("email should be a character")
 
   url <- paste0(.baseURL, "register?email=", email)
-  url %>% .getJSON
+  url |> .getJSON()
   return(invisible(NULL))
 }
 
@@ -40,16 +40,16 @@ register <- function(email){
 #'
 #' @examples
 #' \dontrun{
-#'  login()
+#'  sdb_login()
 #' }
 #'
-login <- function(token = NULL){
+sdb_login <- function(token = NULL){
 
   if (is.null(token))
     token <- Sys.getenv("solardb_token") #! load token from env
 
   url <- paste0(.baseURL, "login?token=", token)
-  url %>% .getJSON
+  url |> .getJSON()
   return(invisible(NULL))
 }
 
@@ -65,13 +65,13 @@ login <- function(token = NULL){
 #'
 #' @examples
 #' \dontrun{
-#'  logout()
+#'  sdb_logout()
 #' }
 #'
-logout <- function(){
+sdb_logout <- function(){
 
   url <- paste0(.baseURL, "logout")
-  url %>% .getJSON
+  url |> .getJSON()
 
   return(invisible(NULL))
 }
@@ -88,13 +88,13 @@ logout <- function(){
 #'
 #' @examples
 #' \dontrun{
-#'  status()
+#'  sdb_status()
 #' }
 #'
-status <- function(){
+sdb_status <- function(){
 
   url <- paste0(.baseURL, "status")
-  url %>% .getJSON
+  url |> .getJSON()
 
   return(invisible(NULL))
 }

@@ -1,23 +1,29 @@
-#' Campaigns from SolarDB
+#' Get Campaign Information from SolarDB
 #'
-#' This function allow know the campaigns from SolarDB.
+#' Retrieves information about measurement campaigns from the SolarDB database.
+#' Allows filtering by various campaign attributes.
 #'
-#' @param id character. The _id from the table campaigns
-#' @param name character. The name from the table campaigns
-#' @param territory character. The territory from the table campaigns
-#' @param alias character. The alias site from the table campaigns
+#' @param id character. Campaign identifier
+#' @param name character. Campaign name
+#' @param territory character. Geographic territory of the campaign
+#' @param alias character. Alternative site name
 #'
-#' @return NULL
-#' @export
+#' @return list. Campaign information if successful, NULL otherwise
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
 #'
 #' @examples
-#' \dontrun{
-#'  campaigns()
-#' }
+#' # Get all campaigns
+#' all_campaigns <- sdb_campaigns()
 #'
-campaigns <- function(id = NULL, name = NULL, territory = NULL, alias = NULL) {
+#' # Get campaign by name
+#' marla_campaign <- sdb_campaigns(name = "marla")
+#'
+#' # Filter by territory
+#' reunion_campaigns <- sdb_campaigns(territory = "Reunion")
+#'
+#' @export
+sdb_campaigns <- function(id = NULL, name = NULL, territory = NULL, alias = NULL) {
   if (!is.null(id))
     id <- paste0("id=", id)
 
@@ -33,31 +39,34 @@ campaigns <- function(id = NULL, name = NULL, territory = NULL, alias = NULL) {
   query <- paste(c(id, name, territory, alias), collapse = "&")
 
   url <- paste0(.baseURL, "metadata/campaigns?", query)
-  url %>% .getJSON
+  url |> .getJSON()
 
 }
 
 
-#' Instruments from SolarDB
+#' Get Instrument Information from SolarDB
 #'
-#' This function allow know the instruments from SolarDB.
+#' Retrieves information about measurement instruments from the SolarDB database.
+#' Allows filtering by various instrument attributes.
 #'
-#' @param id character. The _id from the table instruments
-#' @param name character. The name from the table instruments
-#' @param label character. The label from the table instruments
-#' @param serial character. The serial from the table instruments
+#' @param id character. Instrument identifier
+#' @param name character. Instrument name/model
+#' @param label character. Display label for the instrument
+#' @param serial character. Serial number of the instrument
 #'
-#' @return NULL
-#' @export
+#' @return list. Instrument information if successful, NULL otherwise
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
 #'
 #' @examples
-#' \dontrun{
-#'  instruments()
-#' }
+#' # Get all instruments
+#' all_instruments <- sdb_instruments()
 #'
-instruments <- function(id = NULL, name = NULL, label = NULL, serial = NULL) {
+#' # Get instrument by serial number
+#' specific_instrument <- sdb_instruments(serial = "SN123456")
+#'
+#' @export
+sdb_instruments <- function(id = NULL, name = NULL, label = NULL, serial = NULL) {
   if (!is.null(id))
     id <- paste0("id=", id)
 
@@ -73,31 +82,37 @@ instruments <- function(id = NULL, name = NULL, label = NULL, serial = NULL) {
   query <- paste(c(id, name, label, serial), collapse = "&")
 
   url <- paste0(.baseURL, "metadata/instruments?", query)
-  url %>% .getJSON
+  url |> .getJSON()
 
 }
 
 
-#' Measures from SolarDB
+#' Get Measure Types from SolarDB
 #'
-#' This function allow know the measures from SolarDB.
+#' Retrieves information about available measurement types from the SolarDB database.
+#' Supports filtering and nested data retrieval.
 #'
-#' @param id character. The _id from the table measures
-#' @param names character (or character vector). The names from the table measures
-#' @param type character. The type from the table measures
-#' @param nested logical. Answer should be nested from the tables measures, instruments and models
+#' @param id character. Measure type identifier
+#' @param names character or character vector. Names of measure types to retrieve
+#' @param type character. Category of measurement
+#' @param nested logical. If TRUE, includes related instrument and model information
 #'
-#' @return NULL
-#' @export
+#' @return list. Measure type information if successful, NULL otherwise
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
 #'
 #' @examples
-#' \dontrun{
-#'  measures()
-#' }
+#' # Get all measure types
+#' all_measures <- sdb_measures()
 #'
-measures <- function(id = NULL, names = NULL, type = NULL, nested = FALSE) {
+#' # Get specific measures with nested information
+#' temp_measures <- sdb_measures(
+#'   names = c("temperature", "humidity"),
+#'   nested = TRUE
+#' )
+#'
+#' @export
+sdb_measures <- function(id = NULL, names = NULL, type = NULL, nested = FALSE) {
   if (!is.null(id))
     id <- paste0("id=", id)
 
@@ -113,30 +128,33 @@ measures <- function(id = NULL, names = NULL, type = NULL, nested = FALSE) {
   query <- paste(c(id, names, type, nested), collapse = "&")
 
   url <- paste0(.baseURL, "metadata/measures?", query)
-  url %>% .getJSON
+  url |> .getJSON()
 
 }
 
 
-#' Models from SolarDB
+#' Get Model Information from SolarDB
 #'
-#' This function allow know the models from SolarDB.
+#' Retrieves information about instrument models from the SolarDB database.
+#' Allows filtering by various model attributes.
 #'
-#' @param id character. The _id from the table models
-#' @param name character. The name from the table models
-#' @param type character. The type from the table models
+#' @param id character. Model identifier
+#' @param name character. Model name
+#' @param type character. Model type/category
 #'
-#' @return NULL
-#' @export
+#' @return list. Model information if successful, NULL otherwise
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
 #'
 #' @examples
-#' \dontrun{
-#'  models()
-#' }
+#' # Get all models
+#' all_models <- sdb_models()
 #'
-models <- function(id = NULL, name = NULL, type = NULL) {
+#' # Get models of specific type
+#' sensor_models <- sdb_models(type = "sensor")
+#'
+#' @export
+sdb_models <- function(id = NULL, name = NULL, type = NULL) {
   if (!is.null(id))
     id <- paste0("id=", id)
 
@@ -149,6 +167,6 @@ models <- function(id = NULL, name = NULL, type = NULL) {
   query <- paste(c(id, name, type), collapse = "&")
 
   url <- paste0(.baseURL, "metadata/models?", query)
-  url %>% .getJSON
+  url |> .getJSON()
 
 }

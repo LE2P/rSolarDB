@@ -6,7 +6,7 @@ material_page(
     material_column(width = 3,
         material_card(title = "Options :", depth = 4,
             tags$br(),
-            material_dropdown(input_id = "siteChoice", label = "Site", choices = sites()),
+            material_dropdown(input_id = "siteChoice", label = "Site", choices = sdb_sites()),
             material_dropdown(input_id = "sensorChoice", label = "Sensor", choices = "")
         )
     ),
