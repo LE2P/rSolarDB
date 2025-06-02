@@ -4,9 +4,17 @@
 \name{rSolarDB-package}
 \alias{rSolarDB}
 \alias{rSolarDB-package}
-\title{rSolarDB: r library to access SolarDB database}
+\title{rSolarDB: R Library to Access SolarDB Database}
 \description{
-Package allow to download data and metadata from SolarDB. For more information visit \url{https://galilee.univ-reunion.fr}.
+This package allows downloading data and metadata from SolarDB. For more information, see the project webpage at \url{https://galilee.univ-reunion.fr}.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://galilee.univ-reunion.fr}
+  \item Report bugs at \url{https://github.com/LE2P/rSolarDB/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Mathieu Delsaut \email{mathieu.delsaut@univ-reunion.fr} (\href{https://orcid.org/0000-0003-3878-1642}{ORCID})

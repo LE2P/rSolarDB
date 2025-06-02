@@ -15,6 +15,13 @@ This function allow to logout to SolarDB.
 }
 
 }
+\seealso{
+Other authentication: 
+\code{\link{sdb_login}()},
+\code{\link{sdb_register}()},
+\code{\link{sdb_status}()}
+}
 \author{
 Mathieu Delsaut, \email{mathieu.delsaut@univ-reunion.fr}
 }
+\concept{authentication}

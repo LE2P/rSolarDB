@@ -27,3 +27,4 @@ if (interactive()) {
 \author{
 Mathieu Delsaut, \email{mathieu.delsaut@univ-reunion.fr}
 }
+\concept{shiny}

@@ -1,28 +1,33 @@
-#' Get Campaign Information from SolarDB
+#' Retrieve Campaign Information from SolarDB
 #'
-#' Retrieves information about measurement campaigns from the SolarDB database.
-#' Allows filtering by various campaign attributes.
+#' Fetches metadata about measurement campaigns stored in the SolarDB database.
+#' You can filter results by campaign ID, name, territory, or alias. If no filter is provided, all campaigns are returned.
 #'
-#' @param id character. Campaign identifier
-#' @param name character. Campaign name
-#' @param territory character. Geographic territory of the campaign
-#' @param alias character. Alternative site name
+#' @param id character. Optional. Unique campaign identifier to filter results. Default is NULL (no filter).
+#' @param name character. Optional. Name of the campaign to filter results. Default is NULL (no filter).
+#' @param territory character. Optional. Geographic territory of the campaign (e.g., "Reunion"). Default is NULL (no filter).
+#' @param alias character. Optional. Alternative site name for the campaign. Default is NULL (no filter).
 #'
-#' @return list. Campaign information if successful, NULL otherwise
+#' @return A list containing campaign information matching the filters, or NULL if no match is found or on error.
+#' @export
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
 #'
+#' @family metadata-access
+#'
 #' @examples
-#' # Get all campaigns
+#' # Retrieve all campaigns
 #' all_campaigns <- sdb_campaigns()
 #'
-#' # Get campaign by name
+#' # Retrieve a campaign by name
 #' marla_campaign <- sdb_campaigns(name = "marla")
 #'
-#' # Filter by territory
+#' # Retrieve campaigns by territory
 #' reunion_campaigns <- sdb_campaigns(territory = "Reunion")
 #'
-#' @export
+#' # Retrieve a campaign by ID
+#' specific_campaign <- sdb_campaigns(id = "123")
+#'
 sdb_campaigns <- function(id = NULL, name = NULL, territory = NULL, alias = NULL) {
   if (!is.null(id))
     id <- paste0("id=", id)
@@ -44,28 +49,33 @@ sdb_campaigns <- function(id = NULL, name = NULL, territory = NULL, alias = NULL
 }
 
 
-#' Get Instrument Information from SolarDB
+#' Retrieve Instrument Information from SolarDB
 #'
-#' Retrieves information about measurement instruments from the SolarDB database.
-#' Allows filtering by various instrument attributes.
+#' Fetches metadata about measurement instruments from the SolarDB database.
+#' You can filter results by instrument ID, name/model, label, or serial number. If no filter is provided, all instruments are returned.
 #'
-#' @param id character. Instrument identifier
-#' @param name character. Instrument name/model
-#' @param label character. Display label for the instrument
-#' @param serial character. Serial number of the instrument
+#' @param id character. Optional. Unique instrument identifier to filter results. Default is NULL (no filter).
+#' @param name character. Optional. Name or model of the instrument. Default is NULL (no filter).
+#' @param label character. Optional. Display label for the instrument. Default is NULL (no filter).
+#' @param serial character. Optional. Serial number of the instrument. Default is NULL (no filter).
 #'
-#' @return list. Instrument information if successful, NULL otherwise
+#' @return A list containing instrument information matching the filters, or NULL if no match is found or on error.
+#' @export
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
 #'
+#' @family metadata-access
+#' 
 #' @examples
-#' # Get all instruments
+#' # Retrieve all instruments
 #' all_instruments <- sdb_instruments()
 #'
-#' # Get instrument by serial number
+#' # Retrieve an instrument by serial number
 #' specific_instrument <- sdb_instruments(serial = "SN123456")
 #'
-#' @export
+#' # Retrieve an instrument by name
+#' pyranometer <- sdb_instruments(name = "PYR056")
+#'
 sdb_instruments <- function(id = NULL, name = NULL, label = NULL, serial = NULL) {
   if (!is.null(id))
     id <- paste0("id=", id)
@@ -87,31 +97,33 @@ sdb_instruments <- function(id = NULL, name = NULL, label = NULL, serial = NULL)
 }
 
 
-#' Get Measure Types from SolarDB
+#' Retrieve Measure Types from SolarDB
 #'
-#' Retrieves information about available measurement types from the SolarDB database.
-#' Supports filtering and nested data retrieval.
+#' Fetches metadata about available measurement types from the SolarDB database.
+#' Supports filtering by ID, name(s), or type, and can include nested instrument/model information.
 #'
-#' @param id character. Measure type identifier
-#' @param names character or character vector. Names of measure types to retrieve
-#' @param type character. Category of measurement
-#' @param nested logical. If TRUE, includes related instrument and model information
+#' @param id character. Optional. Unique measure type identifier. Default is NULL (no filter).
+#' @param names character or character vector. Optional. Name(s) of measure types to retrieve. Default is NULL (no filter).
+#' @param type character. Optional. Category of measurement (e.g., "temperature"). Default is NULL (no filter).
+#' @param nested logical. If TRUE, includes related instrument and model information. Default is FALSE.
 #'
-#' @return list. Measure type information if successful, NULL otherwise
+#' @return A list containing measure type information matching the filters, or NULL if no match is found or on error.
+#' @export
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
 #'
+#' @family metadata-access
+#'
 #' @examples
-#' # Get all measure types
+#' # Retrieve all measure types
 #' all_measures <- sdb_measures()
 #'
-#' # Get specific measures with nested information
-#' temp_measures <- sdb_measures(
-#'   names = c("temperature", "humidity"),
-#'   nested = TRUE
-#' )
+#' # Retrieve specific measures with nested information
+#' temp_measures <- sdb_measures(names = c("temperature", "humidity"), nested = TRUE)
 #'
-#' @export
+#' # Retrieve a measure type by ID
+#' specific_measure <- sdb_measures(id = "42")
+#'
 sdb_measures <- function(id = NULL, names = NULL, type = NULL, nested = FALSE) {
   if (!is.null(id))
     id <- paste0("id=", id)
@@ -133,27 +145,32 @@ sdb_measures <- function(id = NULL, names = NULL, type = NULL, nested = FALSE) {
 }
 
 
-#' Get Model Information from SolarDB
+#' Retrieve Model Information from SolarDB
 #'
-#' Retrieves information about instrument models from the SolarDB database.
-#' Allows filtering by various model attributes.
+#' Fetches metadata about instrument models from the SolarDB database.
+#' You can filter results by model ID, name, or type. If no filter is provided, all models are returned.
 #'
-#' @param id character. Model identifier
-#' @param name character. Model name
-#' @param type character. Model type/category
+#' @param id character. Optional. Unique model identifier. Default is NULL (no filter).
+#' @param name character. Optional. Name of the model. Default is NULL (no filter).
+#' @param type character. Optional. Model type or category (e.g., "sensor"). Default is NULL (no filter).
 #'
-#' @return list. Model information if successful, NULL otherwise
+#' @return A list containing model information matching the filters, or NULL if no match is found or on error.
+#' @export
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
 #'
+#' @family metadata-access
+#'
 #' @examples
-#' # Get all models
+#' # Retrieve all models
 #' all_models <- sdb_models()
 #'
-#' # Get models of specific type
+#' # Retrieve models of a specific type
 #' sensor_models <- sdb_models(type = "sensor")
 #'
-#' @export
+#' # Retrieve a model by name
+#' specific_model <- sdb_models(name = "SPN1")
+#'
 sdb_models <- function(id = NULL, name = NULL, type = NULL) {
   if (!is.null(id))
     id <- paste0("id=", id)

@@ -10,6 +10,8 @@
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
 #'
+#' @family authentication
+#'
 #' @examples
 #' \dontrun{
 #'  sdb_register(email = "email@domain.com")
@@ -43,6 +45,8 @@ sdb_register <- function(email){
 #'  sdb_login()
 #' }
 #'
+#' @family authentication
+#'
 sdb_login <- function(token = NULL){
 
   if (is.null(token))
@@ -68,6 +72,8 @@ sdb_login <- function(token = NULL){
 #'  sdb_logout()
 #' }
 #'
+#' @family authentication
+#'
 sdb_logout <- function(){
 
   url <- paste0(.baseURL, "logout")
@@ -90,6 +96,8 @@ sdb_logout <- function(){
 #' \dontrun{
 #'  sdb_status()
 #' }
+#'
+#' @family authentication
 #'
 sdb_status <- function(){
 

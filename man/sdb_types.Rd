@@ -7,15 +7,27 @@
 sdb_types()
 }
 \value{
-A list of data types
+A character vector containing all available data types.
 }
 \description{
 Retrieves the list of all available data types from the SolarDB API.
+This function queries the SolarDB endpoint to obtain all registered data types
+(e.g., GHI, DHI, temperature), which can be used as filters in other data queries.
 }
 \examples{
+# List all available data types
 sdb_types()
 
+}
+\seealso{
+Other data-access: 
+\code{\link{sdb_bounds}()},
+\code{\link{sdb_daily_counts}()},
+\code{\link{sdb_data}()},
+\code{\link{sdb_sensors}()},
+\code{\link{sdb_sites}()}
 }
 \author{
 Mathieu Delsaut, \email{mathieu.delsaut@univ-reunion.fr}
 }
+\concept{data-access}

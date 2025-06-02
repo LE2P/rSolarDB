@@ -1,11 +1,10 @@
 Package: rSolarDB
-Title: r library to access SolarDB database
-Version: 1.0.0
+Title: R Library to Access SolarDB Database
+Version: 1.0.1
 Authors@R: 
-    person("Mathieu", "Delsaut", , "mathieu.delsaut@univ-reunion.fr", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0003-3878-1642"))
-Description: Package allow to download data and metadata from SolarDB. For more
-    information visit <https://galilee.univ-reunion.fr>.
+    person("Mathieu", "Delsaut", , "mathieu.delsaut@univ-reunion.fr", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-3878-1642"))
+Description: This package allows downloading data and metadata from SolarDB.
+    For more information, see the project webpage at <https://galilee.univ-reunion.fr>.
 License: file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -18,3 +17,5 @@ Imports:
     xts,
     shiny,
     lifecycle
+URL: https://galilee.univ-reunion.fr
+BugReports: https://github.com/LE2P/rSolarDB/issues

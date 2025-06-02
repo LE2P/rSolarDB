@@ -2,34 +2,44 @@
 % Please edit documentation in R/metadata.R
 \name{sdb_instruments}
 \alias{sdb_instruments}
-\title{Get Instrument Information from SolarDB}
+\title{Retrieve Instrument Information from SolarDB}
 \usage{
 sdb_instruments(id = NULL, name = NULL, label = NULL, serial = NULL)
 }
 \arguments{
-\item{id}{character. Instrument identifier}
+\item{id}{character. Optional. Unique instrument identifier to filter results. Default is NULL (no filter).}
 
-\item{name}{character. Instrument name/model}
+\item{name}{character. Optional. Name or model of the instrument. Default is NULL (no filter).}
 
-\item{label}{character. Display label for the instrument}
+\item{label}{character. Optional. Display label for the instrument. Default is NULL (no filter).}
 
-\item{serial}{character. Serial number of the instrument}
+\item{serial}{character. Optional. Serial number of the instrument. Default is NULL (no filter).}
 }
 \value{
-list. Instrument information if successful, NULL otherwise
+A list containing instrument information matching the filters, or NULL if no match is found or on error.
 }
 \description{
-Retrieves information about measurement instruments from the SolarDB database.
-Allows filtering by various instrument attributes.
+Fetches metadata about measurement instruments from the SolarDB database.
+You can filter results by instrument ID, name/model, label, or serial number. If no filter is provided, all instruments are returned.
 }
 \examples{
-# Get all instruments
+# Retrieve all instruments
 all_instruments <- sdb_instruments()
 
-# Get instrument by serial number
+# Retrieve an instrument by serial number
 specific_instrument <- sdb_instruments(serial = "SN123456")
 
+# Retrieve an instrument by name
+pyranometer <- sdb_instruments(name = "PYR056")
+
+}
+\seealso{
+Other metadata-access: 
+\code{\link{sdb_campaigns}()},
+\code{\link{sdb_measures}()},
+\code{\link{sdb_models}()}
 }
 \author{
 Mathieu Delsaut, \email{mathieu.delsaut@univ-reunion.fr}
 }
+\concept{metadata-access}

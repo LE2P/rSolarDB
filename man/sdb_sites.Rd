@@ -7,15 +7,27 @@
 sdb_sites()
 }
 \value{
-A list of site aliases
+A character vector containing all available site aliases.
 }
 \description{
 Retrieves the list of all available site aliases from the SolarDB API.
+This function queries the SolarDB endpoint to obtain all registered site aliases,
+which can be used as filters in other data queries.
 }
 \examples{
+# List all available site aliases
 sdb_sites()
 
+}
+\seealso{
+Other data-access: 
+\code{\link{sdb_bounds}()},
+\code{\link{sdb_daily_counts}()},
+\code{\link{sdb_data}()},
+\code{\link{sdb_sensors}()},
+\code{\link{sdb_types}()}
 }
 \author{
 Mathieu Delsaut, \email{mathieu.delsaut@univ-reunion.fr}
 }
+\concept{data-access}

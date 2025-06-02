@@ -7,27 +7,40 @@
 sdb_sensors(sites = NULL, types = NULL)
 }
 \arguments{
-\item{sites}{character vector. List of site aliases to filter sensors}
+\item{sites}{character vector. List of site aliases to filter sensors (optional).}
 
-\item{types}{character vector. List of data types to filter sensors}
+\item{types}{character vector. List of data types to filter sensors (optional).}
 }
 \value{
-A list of sensor IDs matching the filter criteria
+A character vector of sensor IDs matching the filter criteria.
 }
 \description{
 Retrieves the list of sensor IDs from the SolarDB API, optionally filtered by sites and types.
+This function allows you to filter sensors by site alias and/or data type.
 }
 \examples{
+# Get all sensors
 all_sensors <- sdb_sensors()
 head(all_sensors)
 
+# Get sensors for a specific site
 marla_sensors <- sdb_sensors(sites = "marla")
 marla_sensors
 
+# Get sensors for a specific data type
 ghi_sensors <- sdb_sensors(types = "GHI")
 head(ghi_sensors)
 
 }
+\seealso{
+Other data-access: 
+\code{\link{sdb_bounds}()},
+\code{\link{sdb_daily_counts}()},
+\code{\link{sdb_data}()},
+\code{\link{sdb_sites}()},
+\code{\link{sdb_types}()}
+}
 \author{
 Mathieu Delsaut, \email{mathieu.delsaut@univ-reunion.fr}
 }
+\concept{data-access}

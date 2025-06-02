@@ -1,13 +1,18 @@
 #' Get list of alias sites from SolarDB
 #'
 #' Retrieves the list of all available site aliases from the SolarDB API.
+#' This function queries the SolarDB endpoint to obtain all registered site aliases,
+#' which can be used as filters in other data queries.
 #'
-#' @return A list of site aliases
+#' @return A character vector containing all available site aliases.
 #' @export
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
 #'
+#' @family data-access
+#'
 #' @examples
+#' # List all available site aliases
 #' sdb_sites()
 #'
 sdb_sites <- function() {
@@ -19,13 +24,18 @@ sdb_sites <- function() {
 #' Get list of data types from SolarDB
 #'
 #' Retrieves the list of all available data types from the SolarDB API.
+#' This function queries the SolarDB endpoint to obtain all registered data types
+#' (e.g., GHI, DHI, temperature), which can be used as filters in other data queries.
 #'
-#' @return A list of data types
+#' @return A character vector containing all available data types.
 #' @export
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
 #'
+#' @family data-access
+#'
 #' @examples
+#' # List all available data types
 #' sdb_types()
 #'
 sdb_types <- function() {
@@ -37,22 +47,28 @@ sdb_types <- function() {
 #' Get list of sensor IDs from SolarDB
 #'
 #' Retrieves the list of sensor IDs from the SolarDB API, optionally filtered by sites and types.
+#' This function allows you to filter sensors by site alias and/or data type.
 #'
-#' @param sites character vector. List of site aliases to filter sensors
-#' @param types character vector. List of data types to filter sensors
+#' @param sites character vector. List of site aliases to filter sensors (optional).
+#' @param types character vector. List of data types to filter sensors (optional).
 #'
-#' @return A list of sensor IDs matching the filter criteria
+#' @return A character vector of sensor IDs matching the filter criteria.
 #' @export
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
 #'
+#' @family data-access
+#'
 #' @examples
+#' # Get all sensors
 #' all_sensors <- sdb_sensors()
 #' head(all_sensors)
 #'
+#' # Get sensors for a specific site
 #' marla_sensors <- sdb_sensors(sites = "marla")
 #' marla_sensors
 #'
+#' # Get sensors for a specific data type
 #' ghi_sensors <- sdb_sensors(types = "GHI")
 #' head(ghi_sensors)
 #'
@@ -73,20 +89,24 @@ sdb_sensors <- function(sites = NULL, types = NULL) {
 #' Query time series data from SolarDB
 #'
 #' Retrieves time series data from the SolarDB API with flexible filtering and aggregation options.
+#' This function allows you to query time series data by site, type, or sensor ID, and supports
+#' time range selection and aggregation (e.g., mean, sum) over custom periods.
 #'
-#' @param sites character vector. List of sites to query
-#' @param types character vector. List of data types to query
-#' @param sensors character vector. List of sensor IDs to query
-#' @param start character. Start date/time in ISO format or duration (e.g. "-1d" for last day)
-#' @param stop character. End date/time in ISO format or duration
-#' @param aggrFn character. Aggregation function (e.g. "mean", "sum", "count")
-#' @param aggrEvery character. Aggregation period (e.g. "1h", "1d")
-#' @param format character. Format of the returned data (e.g. "list" (default), "xts", "data.table")
+#' @param sites character vector. List of sites to query (optional).
+#' @param types character vector. List of data types to query (optional).
+#' @param sensors character vector. List of sensor IDs to query (optional).
+#' @param start character. Start date/time in ISO format or duration (e.g. "-1d" for last day) (optional).
+#' @param stop character. End date/time in ISO format or duration (optional).
+#' @param aggrFn character. Aggregation function (e.g. "mean", "sum", "count") (optional).
+#' @param aggrEvery character. Aggregation period (e.g. "1h", "1d") (optional).
+#' @param format character. Format of the returned data (e.g. "list" (default), "xts", "data.table").
 #'
-#' @return A nested list of time series data organized by site and sensor
+#' @return A nested list of time series data organized by site and sensor, or a data.table/xts object if specified.
 #' @export
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
+#'
+#' @family data-access
 #'
 #' @examples
 #' # Get raw data for last day
@@ -133,18 +153,21 @@ sdb_data <- function(sites = NULL, types = NULL, sensors = NULL, start = NULL, s
 #' Get daily data count for a sensor from SolarDB
 #'
 #' Retrieves the count of measurements per day for a specific sensor. This is useful
-#' for checking data availability and completeness.
+#' for checking data availability and completeness. The function returns a named vector
+#' or list with dates as names and counts as values.
 #'
-#' @param site character. Site alias where the sensor is located
-#' @param sensor character. Sensor ID to get counts for
+#' @param site character. Site alias where the sensor is located.
+#' @param sensor character. Sensor ID to get counts for.
 #'
-#' @return A list containing daily measurement counts for the specified sensor
+#' @return A named vector or list containing daily measurement counts for the specified sensor.
 #' @export
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
 #'
+#' @family data-access
+#'
 #' @examples
-#' # Get daily counts for a GHI sensor at MOUFIA
+#' # Get daily counts for a GHI sensor at MARLA
 #' counts <- sdb_daily_counts("marla", "DHI_qn01_Avg")
 #'
 sdb_daily_counts <- function(site, sensor) {
@@ -160,16 +183,19 @@ sdb_daily_counts <- function(site, sensor) {
 #' Get data bounds from SolarDB
 #'
 #' Retrieves the temporal bounds (earliest and latest timestamps) for the specified
-#' data selection. This is useful for determining data availability periods.
+#' data selection. This is useful for determining data availability periods for a given
+#' site, type, or sensor.
 #'
-#' @param sites character vector. List of sites to check bounds for
-#' @param types character vector. List of data types to check bounds for
-#' @param sensors character vector. List of sensor IDs to check bounds for
+#' @param sites character vector. List of sites to check bounds for (optional).
+#' @param types character vector. List of data types to check bounds for (optional).
+#' @param sensors character vector. List of sensor IDs to check bounds for (optional).
 #'
-#' @return A list containing the earliest and latest timestamps for each site/sensor combination
+#' @return A list containing the earliest and latest timestamps for each site/sensor combination.
 #' @export
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
+#'
+#' @family data-access
 #'
 #' @examples
 #' # Get bounds for all GHI sensors

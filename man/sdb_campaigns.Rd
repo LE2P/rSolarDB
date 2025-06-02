@@ -2,37 +2,47 @@
 % Please edit documentation in R/metadata.R
 \name{sdb_campaigns}
 \alias{sdb_campaigns}
-\title{Get Campaign Information from SolarDB}
+\title{Retrieve Campaign Information from SolarDB}
 \usage{
 sdb_campaigns(id = NULL, name = NULL, territory = NULL, alias = NULL)
 }
 \arguments{
-\item{id}{character. Campaign identifier}
+\item{id}{character. Optional. Unique campaign identifier to filter results. Default is NULL (no filter).}
 
-\item{name}{character. Campaign name}
+\item{name}{character. Optional. Name of the campaign to filter results. Default is NULL (no filter).}
 
-\item{territory}{character. Geographic territory of the campaign}
+\item{territory}{character. Optional. Geographic territory of the campaign (e.g., "Reunion"). Default is NULL (no filter).}
 
-\item{alias}{character. Alternative site name}
+\item{alias}{character. Optional. Alternative site name for the campaign. Default is NULL (no filter).}
 }
 \value{
-list. Campaign information if successful, NULL otherwise
+A list containing campaign information matching the filters, or NULL if no match is found or on error.
 }
 \description{
-Retrieves information about measurement campaigns from the SolarDB database.
-Allows filtering by various campaign attributes.
+Fetches metadata about measurement campaigns stored in the SolarDB database.
+You can filter results by campaign ID, name, territory, or alias. If no filter is provided, all campaigns are returned.
 }
 \examples{
-# Get all campaigns
+# Retrieve all campaigns
 all_campaigns <- sdb_campaigns()
 
-# Get campaign by name
+# Retrieve a campaign by name
 marla_campaign <- sdb_campaigns(name = "marla")
 
-# Filter by territory
+# Retrieve campaigns by territory
 reunion_campaigns <- sdb_campaigns(territory = "Reunion")
 
+# Retrieve a campaign by ID
+specific_campaign <- sdb_campaigns(id = "123")
+
+}
+\seealso{
+Other metadata-access: 
+\code{\link{sdb_instruments}()},
+\code{\link{sdb_measures}()},
+\code{\link{sdb_models}()}
 }
 \author{
 Mathieu Delsaut, \email{mathieu.delsaut@univ-reunion.fr}
 }
+\concept{metadata-access}

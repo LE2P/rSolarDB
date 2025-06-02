@@ -2,32 +2,42 @@
 % Please edit documentation in R/metadata.R
 \name{sdb_models}
 \alias{sdb_models}
-\title{Get Model Information from SolarDB}
+\title{Retrieve Model Information from SolarDB}
 \usage{
 sdb_models(id = NULL, name = NULL, type = NULL)
 }
 \arguments{
-\item{id}{character. Model identifier}
+\item{id}{character. Optional. Unique model identifier. Default is NULL (no filter).}
 
-\item{name}{character. Model name}
+\item{name}{character. Optional. Name of the model. Default is NULL (no filter).}
 
-\item{type}{character. Model type/category}
+\item{type}{character. Optional. Model type or category (e.g., "sensor"). Default is NULL (no filter).}
 }
 \value{
-list. Model information if successful, NULL otherwise
+A list containing model information matching the filters, or NULL if no match is found or on error.
 }
 \description{
-Retrieves information about instrument models from the SolarDB database.
-Allows filtering by various model attributes.
+Fetches metadata about instrument models from the SolarDB database.
+You can filter results by model ID, name, or type. If no filter is provided, all models are returned.
 }
 \examples{
-# Get all models
+# Retrieve all models
 all_models <- sdb_models()
 
-# Get models of specific type
+# Retrieve models of a specific type
 sensor_models <- sdb_models(type = "sensor")
 
+# Retrieve a model by name
+specific_model <- sdb_models(name = "SPN1")
+
+}
+\seealso{
+Other metadata-access: 
+\code{\link{sdb_campaigns}()},
+\code{\link{sdb_instruments}()},
+\code{\link{sdb_measures}()}
 }
 \author{
 Mathieu Delsaut, \email{mathieu.delsaut@univ-reunion.fr}
 }
+\concept{metadata-access}

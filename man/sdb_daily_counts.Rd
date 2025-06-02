@@ -7,22 +7,32 @@
 sdb_daily_counts(site, sensor)
 }
 \arguments{
-\item{site}{character. Site alias where the sensor is located}
+\item{site}{character. Site alias where the sensor is located.}
 
-\item{sensor}{character. Sensor ID to get counts for}
+\item{sensor}{character. Sensor ID to get counts for.}
 }
 \value{
-A list containing daily measurement counts for the specified sensor
+A named vector or list containing daily measurement counts for the specified sensor.
 }
 \description{
 Retrieves the count of measurements per day for a specific sensor. This is useful
-for checking data availability and completeness.
+for checking data availability and completeness. The function returns a named vector
+or list with dates as names and counts as values.
 }
 \examples{
-# Get daily counts for a GHI sensor at MOUFIA
+# Get daily counts for a GHI sensor at MARLA
 counts <- sdb_daily_counts("marla", "DHI_qn01_Avg")
 
+}
+\seealso{
+Other data-access: 
+\code{\link{sdb_bounds}()},
+\code{\link{sdb_data}()},
+\code{\link{sdb_sensors}()},
+\code{\link{sdb_sites}()},
+\code{\link{sdb_types}()}
 }
 \author{
 Mathieu Delsaut, \email{mathieu.delsaut@univ-reunion.fr}
 }
+\concept{data-access}

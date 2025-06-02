@@ -16,27 +16,29 @@ sdb_data(
 )
 }
 \arguments{
-\item{sites}{character vector. List of sites to query}
+\item{sites}{character vector. List of sites to query (optional).}
 
-\item{types}{character vector. List of data types to query}
+\item{types}{character vector. List of data types to query (optional).}
 
-\item{sensors}{character vector. List of sensor IDs to query}
+\item{sensors}{character vector. List of sensor IDs to query (optional).}
 
-\item{start}{character. Start date/time in ISO format or duration (e.g. "-1d" for last day)}
+\item{start}{character. Start date/time in ISO format or duration (e.g. "-1d" for last day) (optional).}
 
-\item{stop}{character. End date/time in ISO format or duration}
+\item{stop}{character. End date/time in ISO format or duration (optional).}
 
-\item{aggrFn}{character. Aggregation function (e.g. "mean", "sum", "count")}
+\item{aggrFn}{character. Aggregation function (e.g. "mean", "sum", "count") (optional).}
 
-\item{aggrEvery}{character. Aggregation period (e.g. "1h", "1d")}
+\item{aggrEvery}{character. Aggregation period (e.g. "1h", "1d") (optional).}
 
-\item{format}{character. Format of the returned data (e.g. "list" (default), "xts", "data.table")}
+\item{format}{character. Format of the returned data (e.g. "list" (default), "xts", "data.table").}
 }
 \value{
-A nested list of time series data organized by site and sensor
+A nested list of time series data organized by site and sensor, or a data.table/xts object if specified.
 }
 \description{
 Retrieves time series data from the SolarDB API with flexible filtering and aggregation options.
+This function allows you to query time series data by site, type, or sensor ID, and supports
+time range selection and aggregation (e.g., mean, sum) over custom periods.
 }
 \examples{
 # Get raw data for last day
@@ -47,6 +49,15 @@ sdb_data(sensors = "GHI", start = "2023-01-01", stop = "2023-01-31",
   aggrFn = "mean", aggrEvery = "1h")
 
 }
+\seealso{
+Other data-access: 
+\code{\link{sdb_bounds}()},
+\code{\link{sdb_daily_counts}()},
+\code{\link{sdb_sensors}()},
+\code{\link{sdb_sites}()},
+\code{\link{sdb_types}()}
+}
 \author{
 Mathieu Delsaut, \email{mathieu.delsaut@univ-reunion.fr}
 }
+\concept{data-access}

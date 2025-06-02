@@ -9,17 +9,18 @@
 #' files, an informative error message will be displayed.
 #'
 #' @return None (invisible). Opens a Shiny application in the default web browser.
+#' @export
 #'
 #' @author Mathieu Delsaut, \email{mathieu.delsaut@@univ-reunion.fr}
 #'
 #' @importFrom shiny runApp
 #'
+#' @family shiny
+#'
 #' @examples
 #' if (interactive()) {
 #'   sdb_shiny_missings()
 #' }
-#'
-#' @export
 #'
 sdb_shiny_missings <- function() {
   appDir <- system.file("rSolarDB_Missings", package = "rSolarDB")

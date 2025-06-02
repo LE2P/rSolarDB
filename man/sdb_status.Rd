@@ -15,6 +15,13 @@ This function allow know the login status from SolarDB.
 }
 
 }
+\seealso{
+Other authentication: 
+\code{\link{sdb_login}()},
+\code{\link{sdb_logout}()},
+\code{\link{sdb_register}()}
+}
 \author{
 Mathieu Delsaut, \email{mathieu.delsaut@univ-reunion.fr}
 }
+\concept{authentication}

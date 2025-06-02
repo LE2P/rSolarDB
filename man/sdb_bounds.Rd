@@ -7,18 +7,19 @@
 sdb_bounds(sites = NULL, types = NULL, sensors = NULL)
 }
 \arguments{
-\item{sites}{character vector. List of sites to check bounds for}
+\item{sites}{character vector. List of sites to check bounds for (optional).}
 
-\item{types}{character vector. List of data types to check bounds for}
+\item{types}{character vector. List of data types to check bounds for (optional).}
 
-\item{sensors}{character vector. List of sensor IDs to check bounds for}
+\item{sensors}{character vector. List of sensor IDs to check bounds for (optional).}
 }
 \value{
-A list containing the earliest and latest timestamps for each site/sensor combination
+A list containing the earliest and latest timestamps for each site/sensor combination.
 }
 \description{
 Retrieves the temporal bounds (earliest and latest timestamps) for the specified
-data selection. This is useful for determining data availability periods.
+data selection. This is useful for determining data availability periods for a given
+site, type, or sensor.
 }
 \examples{
 # Get bounds for all GHI sensors
@@ -31,6 +32,15 @@ bnds <- sdb_bounds(sites = "marla", types = c("GHI", "DHI"))
 bnds <- sdb_bounds(sensors = "WD_oo03_Avg")
 
 }
+\seealso{
+Other data-access: 
+\code{\link{sdb_daily_counts}()},
+\code{\link{sdb_data}()},
+\code{\link{sdb_sensors}()},
+\code{\link{sdb_sites}()},
+\code{\link{sdb_types}()}
+}
 \author{
 Mathieu Delsaut, \email{mathieu.delsaut@univ-reunion.fr}
 }
+\concept{data-access}

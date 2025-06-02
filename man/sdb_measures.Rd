@@ -2,37 +2,44 @@
 % Please edit documentation in R/metadata.R
 \name{sdb_measures}
 \alias{sdb_measures}
-\title{Get Measure Types from SolarDB}
+\title{Retrieve Measure Types from SolarDB}
 \usage{
 sdb_measures(id = NULL, names = NULL, type = NULL, nested = FALSE)
 }
 \arguments{
-\item{id}{character. Measure type identifier}
+\item{id}{character. Optional. Unique measure type identifier. Default is NULL (no filter).}
 
-\item{names}{character or character vector. Names of measure types to retrieve}
+\item{names}{character or character vector. Optional. Name(s) of measure types to retrieve. Default is NULL (no filter).}
 
-\item{type}{character. Category of measurement}
+\item{type}{character. Optional. Category of measurement (e.g., "temperature"). Default is NULL (no filter).}
 
-\item{nested}{logical. If TRUE, includes related instrument and model information}
+\item{nested}{logical. If TRUE, includes related instrument and model information. Default is FALSE.}
 }
 \value{
-list. Measure type information if successful, NULL otherwise
+A list containing measure type information matching the filters, or NULL if no match is found or on error.
 }
 \description{
-Retrieves information about available measurement types from the SolarDB database.
-Supports filtering and nested data retrieval.
+Fetches metadata about available measurement types from the SolarDB database.
+Supports filtering by ID, name(s), or type, and can include nested instrument/model information.
 }
 \examples{
-# Get all measure types
+# Retrieve all measure types
 all_measures <- sdb_measures()
 
-# Get specific measures with nested information
-temp_measures <- sdb_measures(
-  names = c("temperature", "humidity"),
-  nested = TRUE
-)
+# Retrieve specific measures with nested information
+temp_measures <- sdb_measures(names = c("temperature", "humidity"), nested = TRUE)
 
+# Retrieve a measure type by ID
+specific_measure <- sdb_measures(id = "42")
+
+}
+\seealso{
+Other metadata-access: 
+\code{\link{sdb_campaigns}()},
+\code{\link{sdb_instruments}()},
+\code{\link{sdb_models}()}
 }
 \author{
 Mathieu Delsaut, \email{mathieu.delsaut@univ-reunion.fr}
 }
+\concept{metadata-access}
